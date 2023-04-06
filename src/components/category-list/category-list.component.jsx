@@ -8,7 +8,6 @@ const CategoryList = ({ categories }) => {
         const { id } = category;
         return <CategoryItem key={id} category={category} />;
       })}
-      Ola olllaaaa
     </div>
   );
 };
