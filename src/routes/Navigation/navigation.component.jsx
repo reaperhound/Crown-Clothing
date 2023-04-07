@@ -8,12 +8,15 @@ const Navbar = () => {
     <>
       <div className="navigation">
         <Link to={`/`} className="logo-container">
-          <img src={Logo} alt="Logo" srcset="" />
+          <img src={Logo} alt="Logo" />
         </Link>
 
         <div className="nav-links-container">
           <Link to={`/shop`} className="nav-link">
             SHOP
+          </Link>
+          <Link to={`/sign-in`} className="nav-link">
+            SIGN IN
           </Link>
         </div>
       </div>
