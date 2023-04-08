@@ -4,6 +4,8 @@ import {
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firabase.utils";
 import "./signUp.styles.scss";
+import FormInput from "../form-input/form-input.component";
+import ButtonComponent from "../button/button.component";
 
 const defaultFormFields = {
   displayName: "",
@@ -52,11 +54,13 @@ const SignUpForm = () => {
   };
 
   return (
-    <div>
-      <h1>Sign up withEmail and Password</h1>
+    <div className="sign-up-container">
+      <h2>Don't have an account yet?</h2>
+      <span>Sign up with Email and Password</span>
       <form onSubmit={onSubmitHandler}>
-        <label htmlFor="">Name</label>
-        <input
+
+        <FormInput 
+          label={`Name`}
           required
           type="text"
           onChange={onChangeHandler}
@@ -64,8 +68,8 @@ const SignUpForm = () => {
           value={displayName}
         />
 
-        <label htmlFor="">Email</label>
-        <input
+        <FormInput
+          label={`Email`}
           required
           type="email"
           onChange={onChangeHandler}
@@ -73,8 +77,8 @@ const SignUpForm = () => {
           value={email}
         />
 
-        <label htmlFor="">Password</label>
-        <input
+        <FormInput
+          label={`Password`}
           required
           type="password"
           onChange={onChangeHandler}
@@ -82,8 +86,8 @@ const SignUpForm = () => {
           value={password}
         />
 
-        <label htmlFor="">Confirm Password</label>
-        <input
+        <FormInput
+          label={`Confirm Password`}
           required
           type="password"
           onChange={onChangeHandler}
@@ -91,7 +95,7 @@ const SignUpForm = () => {
           value={confirmPassword}
         />
 
-        <button type="submit">Sign up</button>
+        <ButtonComponent type="submit" buttonType={`google`}>Sign up</ButtonComponent>
       </form>
     </div>
   );
