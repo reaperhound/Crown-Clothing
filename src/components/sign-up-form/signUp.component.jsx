@@ -25,7 +25,6 @@ const SignUpForm = () => {
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
-    console.log(formFields);
   };
 
   const onSubmitHandler = async (event) => {
@@ -94,8 +93,8 @@ const SignUpForm = () => {
           name="confirmPassword"
           value={confirmPassword}
         />
-
-        <ButtonComponent type="submit" buttonType={`google`}>Sign up</ButtonComponent>
+        
+        <ButtonComponent type="submit">Sign up</ButtonComponent>
       </form>
     </div>
   );
