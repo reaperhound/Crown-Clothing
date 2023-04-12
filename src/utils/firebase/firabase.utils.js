@@ -58,7 +58,7 @@ export const signOutUser = async () => await signOut(auth);
 //Observing the state of the auth 
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback)
 
-//FireStore
+
 
 export const db = getFirestore(); //directly points to the Database
 
@@ -89,3 +89,5 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo) =>  {
 
   return userDocRef
 }
+
+

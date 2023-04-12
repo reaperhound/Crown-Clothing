@@ -5,6 +5,8 @@ import Logo from "../../assets/crown.svg";
 import { useContext } from "react";
 import { UserContext } from "../../context/user.context";
 import { signOutUser } from "../../utils/firebase/firabase.utils";
+import CartIcon from "../../components/cart-icon/cart-icon.component";
+import CartDropDown from "../../components/cart-dropdown/cart-dropdown.component";
 
 const Navbar = () => {
   const { currentUser } = useContext(UserContext)
@@ -30,8 +32,11 @@ const Navbar = () => {
               </Link>
             )
           }
+          <CartIcon />
           
         </div>
+
+        <CartDropDown />
       </div>
       <Outlet />
     </>
