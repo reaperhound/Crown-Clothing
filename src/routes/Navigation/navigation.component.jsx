@@ -7,12 +7,22 @@ import { UserContext } from "../../context/user.context";
 import { signOutUser } from "../../utils/firebase/firabase.utils";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropDown from "../../components/cart-dropdown/cart-dropdown.component";
+import { CartContext } from "../../context/cartdropdown.context";
 
 const Navbar = () => {
   const { currentUser } = useContext(UserContext)
+  const { cartClicked, setCartClicked } = useContext(CartContext)
+
+  const cartDropHandler = () => {
+    setCartClicked(!cartClicked)
+  }
   return (
     <>
-      <div className="navigation">
+      <div 
+        className="navigation" onClick={() => {
+          cartClicked && setCartClicked(false) 
+          }}
+      >
         <Link to={`/`} className="logo-container">
           <img src={Logo} alt="Logo" />
         </Link>
@@ -32,11 +42,14 @@ const Navbar = () => {
               </Link>
             )
           }
-          <CartIcon />
+          {/* //Cart Clicking */}
+          <CartIcon onClick={cartDropHandler} />
           
         </div>
-
-        <CartDropDown />
+          {/* cartDropDown */}
+          {
+            cartClicked && <CartDropDown />
+          } 
       </div>
       <Outlet />
     </>
