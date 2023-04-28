@@ -15,6 +15,8 @@ import {
   doc,
   getDoc,
   setDoc,
+  writeBatch,
+  collection
 } from "firebase/firestore"
 
 const firebaseConfig = {
@@ -61,6 +63,19 @@ export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth,
 
 
 export const db = getFirestore(); //directly points to the Database
+
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+
+  objectsToAdd.forEach(object => {
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object);
+  })
+
+  await batch.commit();
+  console.log(`done`);
+}
 
 //create user Document
 export const createUserDocumentFromAuth = async (userAuth, additionalInfo) =>  {
