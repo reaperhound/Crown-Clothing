@@ -16,7 +16,9 @@ import {
   getDoc,
   setDoc,
   writeBatch,
-  collection
+  collection,
+  query,
+  getDocs
 } from "firebase/firestore"
 
 const firebaseConfig = {
@@ -64,6 +66,7 @@ export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth,
 
 export const db = getFirestore(); //directly points to the Database
 
+//One time thing to add  the products to the database/ FireStore
 export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
   const collectionRef = collection(db, collectionKey);
   const batch = writeBatch(db);
@@ -75,6 +78,20 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
 
   await batch.commit();
   console.log(`done`);
+}
+
+export const getCollectionAndDocuments = async () => {
+  const collectionRef = collection(db, 'categories')
+  const q = query(collectionRef)
+
+  const querySnapShot = await getDocs(q);
+  const categoryMap = querySnapShot.docs.reduce((acc, docSnapShot) => {
+    const { items , title } = docSnapShot.data();
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {})
+
+  return categoryMap
 }
 
 //create user Document
