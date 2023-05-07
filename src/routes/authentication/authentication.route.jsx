@@ -1,16 +1,14 @@
-import "./authentication.styles.scss";
-import { getRedirectResult } from "firebase/auth";
-import { useEffect } from "react";
+import {AuthenticationSTL} from "./authentication.styles";
 import SignUpForm from "../../components/sign-up-form/signUp.component"; 
 import SingInForm from "../../components/sign-in-form/signInForm.component";
 
 const Authentication = () => {
 
   return (
-    <div className="authentication-container">
+    <AuthenticationSTL>
       <SingInForm />
       <SignUpForm />
-    </div>
+    </AuthenticationSTL>
   );
 };
 

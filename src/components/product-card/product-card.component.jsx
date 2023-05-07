@@ -1,28 +1,37 @@
 import { CartContext } from "../../context/cartdropdown.context";
 import ButtonComponent from "../button/button.component";
-import "./product-card.styles.scss";
+import {
+  ButtonSTL,
+  FooterSTL,
+  ImageSTL,
+  NameSTL,
+  PriceSTL,
+  ProductCardSTL,
+} from "./product-card.styles";
 
 import React, { useContext } from "react";
 
 const ProductCard = ({ product }) => {
-  const { name, imageUrl, price} = product;
-  const { addItemToCart } = useContext(CartContext)
+  const { name, imageUrl, price } = product;
+  const { addItemToCart } = useContext(CartContext);
 
-  const addProductToCartHandler = () => addItemToCart(product)
+  const addProductToCartHandler = () => addItemToCart(product);
 
   return (
-    <div className="product-card-container">
-      <img src={imageUrl} alt={name} />
-      <div className="footer">
-        <span className="name">{name}</span>
-        <span className="price">{price}</span>
-      </div>
-      <ButtonComponent buttonType={`inverted`} classes={`button-product-style`}
-      onClick={addProductToCartHandler}
+    <ProductCardSTL>
+      <ImageSTL src={imageUrl} alt={name} />
+      <FooterSTL>
+        <NameSTL>{name}</NameSTL>
+        <PriceSTL>{price}</PriceSTL>
+      </FooterSTL>
+      <ButtonComponent
+        buttonType={`inverted`}
+        classes={`button-product-style`}
+        onClick={addProductToCartHandler}
       >
         Add to Cart
       </ButtonComponent>
-    </div>
+    </ProductCardSTL>
   );
 };
 

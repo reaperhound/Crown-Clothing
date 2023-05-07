@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import ButtonComponent from "../button/button.component"
 import FormInput from "../form-input/form-input.component"
-import "./signInFrom.styles.scss"
+import {ButtonsSTL, H2STL, SignInSTL} from "./signInFrom.styles.js"
 import { createUserDocumentFromAuth, signInWithGooglePopUp, signInAuthUserFromEmailAndPassword } from "../../utils/firebase/firabase.utils"
 import { UserContext } from "../../context/user.context"
 
@@ -58,8 +58,8 @@ const SingInForm = () => {
   };
 
   return (
-    <div className="sign-in-container">
-      <h2>Already have an account?</h2>
+    <SignInSTL>
+      <H2STL>Already have an account?</H2STL>
       <span>Sign in with email and password</span>
       <form onSubmit={onSubmitHandler} >
       <FormInput 
@@ -76,12 +76,12 @@ const SingInForm = () => {
       name="password"
       onChange={onChangeHandler}
       value={password} />
-      <div className="buttons-container">
+      <ButtonsSTL>
       <ButtonComponent type="submit">Sign in</ButtonComponent>
       <ButtonComponent type="button" onClick={logGoogleUser} buttonType={`google`}>Google Sign In</ButtonComponent>
-      </div>
+      </ButtonsSTL>
       </form>
-    </div>
+    </SignInSTL>
   )
 }
 

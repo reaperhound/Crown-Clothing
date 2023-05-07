@@ -1,5 +1,5 @@
 import { useLocation, useParams } from "react-router-dom";
-import "./Category.route.styles.scss";
+import {CategorySTL,CatgTitleSTL} from "./Category.route.styles.js";
 import { useContext, useEffect, useState } from "react";
 import { CategoriesContext } from "../../context/categories.context";
 import ProductCard from "../../components/product-card/product-card.component";
@@ -18,13 +18,13 @@ export default function Category() {
 
   return (
     <>
-      <h1>{category.charAt(0).toUpperCase()}{category.slice(1)}</h1>
-      <div className="category-container">
+      <CatgTitleSTL>{category.charAt(0).toUpperCase()}{category.slice(1)}</CatgTitleSTL>
+      <CategorySTL>
         {products &&
           products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-      </div>
+      </CategorySTL>
     </>
   );
 }

@@ -1,33 +1,29 @@
-import "./cart-dropdown.styles.scss"
+import { CartDropDownSTL, CartItemSTL } from "./cart-dropdown.styles";
 import ButtonComponent from "../button/button.component";
 
-import React, { useContext } from 'react'
+import React, { useContext } from "react";
 import CartItem from "../cart-item/Cart-Item.component";
 import { CartContext } from "../../context/cartdropdown.context";
 import { useNavigate } from "react-router-dom";
 
 const CartDropDown = () => {
-  const { cartItems } = useContext(CartContext)
-  const navigate = useNavigate()
+  const { cartItems } = useContext(CartContext);
+  const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate('/checkout');
-  }
+    navigate("/checkout");
+  };
 
   return (
-    <div className="cart-dropdown-container">
-      <div className="cart-items">
-        {
-          cartItems.map((item) => {
-            return (
-              <CartItem key={item.id} cartItem={item} />
-            )
-          })
-        }
-      </div>
-        <ButtonComponent onClick={handleNavigate}>CHECKOUT</ButtonComponent>
-    </div>
-  )
-}
+    <CartDropDownSTL>
+      <CartItemSTL>
+        {cartItems.map((item) => {
+          return <CartItem key={item.id} cartItem={item} />;
+        })}
+      </CartItemSTL>
+      <ButtonComponent onClick={handleNavigate}>CHECKOUT</ButtonComponent>
+    </CartDropDownSTL>
+  );
+};
 
-export default CartDropDown
+export default CartDropDown;

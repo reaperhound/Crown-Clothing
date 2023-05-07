@@ -1,5 +1,11 @@
 import { Link, Outlet } from "react-router-dom";
-import "./navigation.styles.scss";
+import {
+  LogoSTL,
+  NavLinksSTL,
+  NavLinkSTl,
+  NavigationSTL,
+  SpanSTL,
+} from "./navigation.styles.js";
 
 import Logo from "../../assets/crown.svg";
 import { useContext } from "react";
@@ -10,47 +16,38 @@ import CartDropDown from "../../components/cart-dropdown/cart-dropdown.component
 import { CartContext } from "../../context/cartdropdown.context";
 
 const Navbar = () => {
-  const { currentUser } = useContext(UserContext)
-  const { cartClicked, setCartClicked } = useContext(CartContext)
+  const { currentUser } = useContext(UserContext);
+  const { cartClicked, setCartClicked } = useContext(CartContext);
 
   const cartDropHandler = () => {
-    setCartClicked(!cartClicked)
-  }
+    setCartClicked(!cartClicked);
+  };
   return (
     <>
-      <div 
-        className="navigation" onClick={() => {
-          cartClicked && setCartClicked(false) 
-          }}
+      <NavigationSTL
+        onClick={() => {
+          cartClicked && setCartClicked(false);
+        }}
       >
-        <Link to={`/`} className="logo-container">
+        <LogoSTL to={`/`}>
           <img src={Logo} alt="Logo" />
-        </Link>
+        </LogoSTL>
 
-        <div className="nav-links-container">
-          <Link to={`/shop`} className="nav-link">
-            SHOP
-          </Link>
-          {
-            currentUser ?
-            (
-              <span className="nav-link" onClick={signOutUser}>SIGN OUT</span>
-            ) :
-            (
-              <Link to={`/auth`} className="nav-link">
-                SIGN IN
-              </Link>
-            )
-          }
+        <NavLinksSTL>
+          <NavLinkSTl to={`/shop`}>SHOP</NavLinkSTl>
+          {currentUser ? (
+            <SpanSTL onClick={signOutUser}>SIGN OUT</SpanSTL>
+          ) : (
+            <NavLinkSTl to={`/auth`} className="nav-link">
+              SIGN IN
+            </NavLinkSTl>
+          )}
           {/* //Cart Clicking */}
           <CartIcon onClick={cartDropHandler} />
-          
-        </div>
-          {/* cartDropDown */}
-          {
-            cartClicked && <CartDropDown />
-          } 
-      </div>
+        </NavLinksSTL>
+        {/* cartDropDown */}
+        {cartClicked && <CartDropDown />}
+      </NavigationSTL>
       <Outlet />
     </>
   );

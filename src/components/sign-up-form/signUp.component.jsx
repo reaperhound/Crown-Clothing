@@ -3,9 +3,9 @@ import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firabase.utils";
-import "./signUp.styles.scss";
 import FormInput from "../form-input/form-input.component";
 import ButtonComponent from "../button/button.component";
+import { H2STL, SingUpSTL } from "./signUp.styles.js";
 
 const defaultFormFields = {
   displayName: "",
@@ -53,8 +53,8 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="sign-up-container">
-      <h2>Don't have an account yet?</h2>
+    <SingUpSTL>
+      <H2STL>Don't have an account yet?</H2STL>
       <span>Sign up with Email and Password</span>
       <form onSubmit={onSubmitHandler}>
         <FormInput
@@ -95,7 +95,7 @@ const SignUpForm = () => {
 
         <ButtonComponent type="submit">Sign up</ButtonComponent>
       </form>
-    </div>
+    </SingUpSTL>
   );
 };
 
