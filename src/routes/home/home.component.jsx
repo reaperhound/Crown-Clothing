@@ -32,7 +32,9 @@ const Home = () => {
 
   return (
     <>
-      <CategoryList categories={categories} />
+      <CategoryList
+      //  categories={categories}
+        />
     </>
   );
 };
